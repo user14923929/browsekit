@@ -15,7 +15,7 @@ ROOT = Path(SPECPATH)
 
 a = Analysis(
     [str(ROOT / "app" / "main.py")],
-    site_packages = sysconfig.get_paths()["purelib"]
+    site_packages = sysconfig.get_paths()["purelib"],
     pathex=[str(ROOT)] + [site_packages],
     binaries=[],
     datas=[
