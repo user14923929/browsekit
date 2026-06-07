@@ -15,7 +15,8 @@ ROOT = Path(SPECPATH)
 
 a = Analysis(
     [str(ROOT / "app" / "main.py")],
-    pathex=[str(ROOT)],
+    site_packages = sysconfig.get_paths()["purelib"]
+    pathex=[str(ROOT)] + [site_packages],
     binaries=[],
     datas=[
         # Include QSS themes
