@@ -1,4 +1,12 @@
-# __pycache__
-core/__pycache__
-plugins/__pycache__
-ui/__pycache__
+# Python
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+
+# PyInstaller
+build/
+dist/
+*.spec.bak
