@@ -13,13 +13,15 @@ block_cipher = None
 
 ROOT = Path(SPECPATH)
 
+# Collect all site-packages directories visible to the running Python.
+# Handles both venv and system-wide installs (common on Arch/CachyOS).
+site_paths = [p for p in sys.path if "site-packages" in p]
+
 a = Analysis(
     [str(ROOT / "app" / "main.py")],
-    site_packages = sysconfig.get_paths()["purelib"],
-    pathex=[str(ROOT)] + [site_packages],
+    pathex=[str(ROOT)] + site_paths,
     binaries=[],
     datas=[
-        # Include QSS themes
         (str(ROOT / "ui" / "themes"), "ui/themes"),
     ],
     hiddenimports=[
@@ -50,8 +52,8 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=False,          # no terminal window
-    # icon="app/icon.ico",  # uncomment and set your icon
+    console=False,
+    # icon="app/icon.ico",
 )
 
 coll = COLLECT(
