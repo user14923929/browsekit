@@ -10,14 +10,17 @@ It demonstrates:
 """
 
 import sys
+from pathlib import Path
+
+# Make sure browsekit root is on the path regardless of where you run from
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QHBoxLayout, QVBoxLayout,
     QPushButton, QLineEdit, QStatusBar,
 )
 from PyQt6.QtCore import Qt
 
-# browsekit imports (adjust path if running from project root)
-sys.path.insert(0, "..")
 from core import BrowserBase
 from ui import load_theme
 from plugins import AdBlockPlugin, HistoryPlugin

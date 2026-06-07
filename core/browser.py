@@ -158,11 +158,15 @@ class BrowserBase(QMainWindow):
     # ------------------------------------------------------------------
 
     def _on_url_changed(self, url: str):
+        if not hasattr(self, "plugin_manager"):
+            return
         self.url_changed.emit(url)
         self.plugin_manager.emit("on_url_change", url)
         self.on_url_changed(url)
 
     def _on_title_changed(self, title: str):
+        if not hasattr(self, "plugin_manager"):
+            return
         self.title_changed.emit(title)
         self.on_title_changed(title)
 

@@ -84,6 +84,8 @@ class TabManager:
             self.tab_widget.setTabText(index, label or "New Tab")
 
     def _on_tab_switched(self, index: int):
+        if not hasattr(self.browser, "plugin_manager"):
+            return
         view = self.view_at(index)
         if view:
             self.browser._on_url_changed(view.url().toString())
